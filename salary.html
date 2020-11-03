@@ -1,0 +1,52 @@
+'<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=S, initial-scale=1.0">
+    <title>Salary</title>
+</head>
+
+<body>
+    <!--Алгоритм расчета ЗП
+    Начнем с того, что с марта стоимость часа работы оператора колл центра до вычетов налогов составляет 792 тг.
+    При расчете ЗП работника по часовой оплате учитывается:
+    начисление оплаты дневного времени:
+    тарифная ставка 594 тг/час и переменная часть 198тг/час
+    Начисление оплаты ночного времени(также праздничные дни) оплачиваетя 1,5 размере
+    Далее идет вычет налогов, три вида налогов:
+    ОПВ(обязательный пенионный взнос) - 10%
+    ВОСМС(взнос обязательного социального медицинского страхования) - 1%
+    ИПН(индивидуальный подоходный налог)=(общая сумма - 42500 - ОПВ - ВОСМС)*0,1-->
+    <script>
+        var result;
+        const TARIF = 594;
+        const VARTARIF = 198;
+        let wihoutProblem = confirm("Отработали без косяка? Если косяка нет нажмите на ОК, если косяк есть нажмите на ОТМЕНА");
+        if (wihoutProblem) {
+            var commonSumma = +prompt("сколько часов отработали?");
+            var nightHourOrHolidayHour = +prompt("Количество ночных или праздничных часов?");
+            nightHourOrHolidayHour = nightHourOrHolidayHour * 1.5;
+            commonSumma = (commonSumma + nightHourOrHolidayHour) * (TARIF + VARTARIF);
+            let tax1 = commonSumma * 10 / 100;
+
+            let tax2 = commonSumma * 1 / 100;
+
+            let tax3 = (commonSumma - 42500 - tax1 - tax2) * 0.1;
+
+            result = commonSumma - tax1 - tax2 - tax3;
+            alert(result)
+
+        } else {
+            var common = prompt("Если у вас косяк, вам зачислят только тарифную ставку без переменной части и без ночных/праздничных прибавок(. Сейчас хотябы эту сумму увидите. Назовите количество общих часов")
+            alert(TARIF * common)
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>'
