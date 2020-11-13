@@ -1,4 +1,4 @@
-'<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,24 +18,47 @@
     ОПВ(обязательный пенионный взнос) - 10%
     ВОСМС(взнос обязательного социального медицинского страхования) - 1%
     ИПН(индивидуальный подоходный налог)=(общая сумма - 42500 - ОПВ - ВОСМС)*0,1-->
+    <div>
+        <span>Сколько часов отработали?</span>
+        <input id="hour">
+    </div>
+    <div>
+        <span>Количество ночных или праздничных часов?</span>
+        <input id="holiday">
+    </div>
+    <div>
+        <button>Узнать сколько зарплата получишь</button>
+    </div>
+    <div>
+        <span id="out"></span>
+    </div>
+    
+
+
     <script>
         var result;
         const TARIF = 594;
         const VARTARIF = 198;
         let wihoutProblem = confirm("Отработали без косяка? Если косяка нет нажмите на ОК, если косяк есть нажмите на ОТМЕНА");
         if (wihoutProblem) {
-            var commonSumma = +prompt("сколько часов отработали?");
-            var nightHourOrHolidayHour = +prompt("Количество ночных или праздничных часов?");
-            nightHourOrHolidayHour = nightHourOrHolidayHour * 1.5;
-            commonSumma = (commonSumma + nightHourOrHolidayHour) * (TARIF + VARTARIF);
-            let tax1 = commonSumma * 10 / 100;
+            document.querySelector("button").onclick = function () {
+                var commonSumma = +document.querySelector("#hour").value;
+                
+                var nightHourOrHolidayHour = +document.querySelector("#holiday").value;
+               
+                nightHourOrHolidayHour = nightHourOrHolidayHour * 1.5;
+                commonSumma = (commonSumma + nightHourOrHolidayHour) * (TARIF + VARTARIF);
+                let tax1 = commonSumma * 10 / 100;
 
-            let tax2 = commonSumma * 1 / 100;
+                let tax2 = commonSumma * 1 / 100;
 
-            let tax3 = (commonSumma - 42500 - tax1 - tax2) * 0.1;
+                let tax3 = (commonSumma - 42500 - tax1 - tax2) * 0.1;
 
-            result = commonSumma - tax1 - tax2 - tax3;
-            alert(result)
+                document.querySelector("#out").innerHTML = commonSumma - tax1 - tax2 - tax3;
+
+
+            }
+
 
         } else {
             var common = prompt("Если у вас косяк, вам зачислят только тарифную ставку без переменной части и без ночных/праздничных прибавок(. Сейчас хотябы эту сумму увидите. Назовите количество общих часов")
@@ -49,4 +72,4 @@
     </script>
 </body>
 
-</html>'
+</html>
